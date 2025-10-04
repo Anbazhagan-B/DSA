@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Executor {
     private static final Logger log = LoggerFactory.getLogger(Executor.class);
@@ -13,7 +14,15 @@ public class Executor {
 
 
     public void execute() {
+        System.out.print(sort(Arrays.asList("Four", "ooo", "tt", "eee")));
     }
+
+    public Map<Integer, List<String>> sort(List<String> nums)
+    {
+        //return nums.stream().collect(Collectors.groupingBy(String::length));
+        return nums.stream().collect(Collectors.groupingBy(String::length));
+    }
+
     public int minEnergy(int a[]) {
         int minEnergy = 0,  totalEnergy = 0;
 

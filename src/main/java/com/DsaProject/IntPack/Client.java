@@ -17,6 +17,11 @@ public class Client {
         executor.execute();
     }
 
+    public Map<Integer, List<String>> sort(ArrayList<String> nums)
+    {
+        return nums.stream().collect(Collectors.groupingBy(String::length));
+    }
+
     public int maxWater(int arr[]) {
         int n = arr.length;
 
