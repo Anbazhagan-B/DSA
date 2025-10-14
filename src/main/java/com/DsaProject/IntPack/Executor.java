@@ -14,7 +14,39 @@ public class Executor {
 
 
     public void execute() {
-        System.out.print(sort(Arrays.asList("Four", "ooo", "tt", "eee")));
+        System.out.print(getPairs(new int[]{ -1, 0, 1, 2, -1, -4 }));
+        System.out.print(getPairs(new int[]{ 6, 1, 8, 0, 4, -9, -1, -10, -6, -5 }));
+    }
+
+    public static ArrayList<ArrayList<Integer>> getPairs(int[] arr) {
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+
+        Map<Integer, Integer> pairsWithCount = new HashMap<>();
+
+        for(int v : arr)
+        {
+           pairsWithCount.put(v, pairsWithCount.getOrDefault(v, 0) + 1);
+        }
+
+        for(int a : pairsWithCount.keySet())
+        {
+            if(a > 0 && pairsWithCount.containsKey(-a))
+            {
+                result.add(new ArrayList<>(List.of(a, -a)));
+            }
+        }
+
+        if(pairsWithCount.getOrDefault(0, 0) >= 2)
+        {
+            result.add(new ArrayList<>(List.of(0, 0)));
+        }
+
+        result.sort((a, b) -> {
+            if (!a.get(0).equals(b.get(0))) return Integer.compare(a.get(0), b.get(0));
+            return Integer.compare(a.get(1), b.get(1));
+        });
+
+        return result;
     }
 
     public Map<Integer, List<String>> sort(List<String> nums)

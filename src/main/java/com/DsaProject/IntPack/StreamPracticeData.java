@@ -30,7 +30,7 @@ public class StreamPracticeData {
 
     // ========== INTERMEDIATE LEVEL DATA ==========
 
-    public static class Employee {
+    public static class Employee implements Comparable<Employee> {
         private int id;
         private String name;
         private int age;
@@ -59,6 +59,11 @@ public class StreamPracticeData {
         public String toString() {
             return String.format("Employee{id=%d, name='%s', age=%d, dept='%s', salary=%.2f, city='%s'}",
                     id, name, age, department, salary, city);
+        }
+
+        @Override
+        public int compareTo(Employee o) {
+            return Integer.compare(this.age, o.age);
         }
     }
 
@@ -189,9 +194,12 @@ public class StreamPracticeData {
 //        System.out.println("4. Count words with length > 5 in getWords()");
 //        System.out.println("5. Find max number in getMixedNumbers()");
 
+        List<Employee> employee1 = getEmployees().stream().toList();
+        List<Employee> employee = getEmployees().stream().sorted(Comparator.comparing(Employee::getAge).reversed()).toList();
+        //Collections.sort(emps);
         System.out.println("\n=== INTERMEDIATE EXERCISES ===");
 
-        System.out.println("6. Find all employees in IT department :- " + getEmployees().stream().filter(employee -> employee.getDepartment().equals("IT")).toList());
+       // System.out.println("6. Find all employees in IT department :- " + getEmployees().stream().filter(employee -> employee.getDepartment().equals("IT")).toList());
 
         System.out.println("7. Get average salary of all employees :- " + getEmployees().stream().mapToDouble(Employee::getSalary).average().orElse(0.0));
 

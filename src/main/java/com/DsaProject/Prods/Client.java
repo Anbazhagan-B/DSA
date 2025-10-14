@@ -1,11 +1,11 @@
 package com.DsaProject.Prods;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Client {
     public static void main(String[] args) {
-
-        System.out.println("");
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
     }
 
 }
