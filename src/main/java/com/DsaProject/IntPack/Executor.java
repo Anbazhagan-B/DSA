@@ -14,8 +14,32 @@ public class Executor {
 
 
     public void execute() {
-        System.out.print(getPairs(new int[]{ -1, 0, 1, 2, -1, -4 }));
-        System.out.print(getPairs(new int[]{ 6, 1, 8, 0, 4, -9, -1, -10, -6, -5 }));
+        //System.out.print(areElementsContiguous(new int[]{ 5, 2, 3, 6, 4, 4, 6, 6}));
+        System.out.print(areElementsContiguous(new int[]{ 10, 14, 10, 12, 12, 13, 15 }));
+    }
+
+    private static boolean areElementsContiguous(int arr[]) {
+        int max = Arrays.stream(arr).max().getAsInt();
+
+        int min = Arrays.stream(arr).min().getAsInt();
+
+        int[] frequencyOfNumbers = new int[max + 1];
+
+        for(int num: arr)
+        {
+            frequencyOfNumbers[num]++;
+        }
+
+
+        for(int element = min + 1; element <= max + 1; element++)
+        {
+            if ( frequencyOfNumbers[element - 1] == 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public static ArrayList<ArrayList<Integer>> getPairs(int[] arr) {
