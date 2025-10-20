@@ -1,4 +1,5 @@
 package com.DsaProject.IntPack;
+import com.DsaProject.IntPack.FunctionalInterface.Calculator;
 import com.DsaProject.IntPack.supports.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,8 +15,20 @@ public class Executor {
 
 
     public void execute() {
-        //System.out.print(areElementsContiguous(new int[]{ 5, 2, 3, 6, 4, 4, 6, 6}));
-        System.out.print(areElementsContiguous(new int[]{ 10, 14, 10, 12, 12, 13, 15 }));
+        praticeFunctionalInterface();
+    }
+
+    void praticeFunctionalInterface()
+    {
+        Calculator add = (a, b) -> a + b;
+        Calculator multiply = (a, b) -> a * b;
+        Calculator divide = (a, b) -> a / b;
+        Calculator subtract = (a, b) -> a - b;
+
+        System.out.println("Add :- " + add.operate(5, 6));
+        System.out.println("Multiply :- " + multiply.operate(5, 6));
+        System.out.println("Divide :- " + divide.operate(36, 6));
+        System.out.println("Subtract :- " + subtract.operate(5, 6));
     }
 
     private static boolean areElementsContiguous(int arr[]) {
