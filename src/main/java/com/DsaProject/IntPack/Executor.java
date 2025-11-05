@@ -15,7 +15,41 @@ public class Executor {
 
 
     public void execute() {
-        praticeFunctionalInterface();
+        System.out.println(maxNtype(new int[]{1, 2, 3, 4, 5}));
+        System.out.println(maxNtype(new int[]{5, 4, 3, 2, 1}));
+        System.out.println(maxNtype(new int[]{2, 1, 5, 4, 3}));
+        System.out.println(maxNtype(new int[]{3, 4, 5, 1, 2}));
+    }
+
+    int maxNtype(int arr[]) {
+        int n = arr.length;
+        boolean isAsc = true, isDesc = true;
+        int ascBreak = 0, descBreak = 0;
+
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] < arr[i + 1])
+                descBreak++;
+            if (arr[i] > arr[i + 1])
+                ascBreak++;
+            if (arr[i] > arr[i + 1])
+                isAsc = false;
+            if (arr[i] < arr[i + 1])
+                isDesc = false;
+        }
+
+        if (arr[n - 1] > arr[0])
+            descBreak++;
+        if (arr[n - 1] < arr[0])
+            ascBreak++;
+
+        if (isAsc)
+            return 1;
+        else if (isDesc)
+            return 2;
+        else if (descBreak == 1)
+            return 3;
+        else
+            return 4;
     }
 
     void praticeFunctionalInterface()
