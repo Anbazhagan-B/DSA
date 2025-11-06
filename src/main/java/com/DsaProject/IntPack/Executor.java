@@ -15,10 +15,21 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(maxNtype(new int[]{1, 2, 3, 4, 5}));
-        System.out.println(maxNtype(new int[]{5, 4, 3, 2, 1}));
-        System.out.println(maxNtype(new int[]{2, 1, 5, 4, 3}));
-        System.out.println(maxNtype(new int[]{3, 4, 5, 1, 2}));
+        System.out.println(maxVal(Arrays.asList(9, 15, 4, 12, 13)));
+        System.out.println(maxVal(Arrays.asList(3, 1, 2, 4)));
+    }
+
+    public int maxVal(List<Integer> arr) {
+        int n = arr.size(), minValue = arr.get(0), maxValue = arr.get(0);
+
+        for(int i = 0; i < n; i++)
+        {
+            int transformValue = arr.get(i) - i;
+            minValue = Math.min(transformValue, minValue);
+            maxValue = Math.max(transformValue, maxValue);
+        }
+
+        return maxValue - minValue;
     }
 
     int maxNtype(int arr[]) {
