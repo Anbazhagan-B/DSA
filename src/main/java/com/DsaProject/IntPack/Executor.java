@@ -15,8 +15,25 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(maxVal(Arrays.asList(9, 15, 4, 12, 13)));
-        System.out.println(maxVal(Arrays.asList(3, 1, 2, 4)));
+        System.out.println(findExtra(new int[]{2,4,6,8,9,10,12}, new int[] {2,4,6,8,10,12}));
+        System.out.println(findExtra(new int[]{3,5,7,8,11,13}, new int[] {3,5,7,11,13}));
+    }
+
+    public int findExtra(int a[], int b[]) {
+        Set<Integer> set = new HashSet<>();
+        for(Integer num : b)
+        {
+            set.add(num);
+        }
+
+        for(int i = 0; i < a.length; i++)
+        {
+            if(!set.contains(a[i]))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public int maxVal(List<Integer> arr) {
