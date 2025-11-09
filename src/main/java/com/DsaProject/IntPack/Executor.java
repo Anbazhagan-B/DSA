@@ -15,8 +15,29 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(findExtra(new int[]{2,4,6,8,9,10,12}, new int[] {2,4,6,8,10,12}));
-        System.out.println(findExtra(new int[]{3,5,7,8,11,13}, new int[] {3,5,7,11,13}));
+        System.out.println(firstRepeated(new int[]{1, 5, 3, 4, 3, 5, 6}));
+        System.out.println(firstRepeated(new int[]{1, 2, 3, 4}));
+    }
+
+    public static int firstRepeated(int[] arr) {
+        // code here
+        Map<Integer, Integer> numSet  = new HashMap<>();
+
+        for(int num : arr)
+        {
+            numSet.put(num, numSet.getOrDefault(num, 0) + 1);
+        }
+
+        for(int i = 0; i < arr.length; i++)
+        {
+            int num = arr[i];
+            if(numSet.get(num) > 1)
+            {
+                return  i + 1;
+            }
+        }
+
+        return -1;
     }
 
     public int findExtra(int a[], int b[]) {
