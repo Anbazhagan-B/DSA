@@ -15,8 +15,32 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(firstRepeated(new int[]{1, 5, 3, 4, 3, 5, 6}));
-        System.out.println(firstRepeated(new int[]{1, 2, 3, 4}));
+        System.out.println(countTriplet(new int[]{1, 5, 3, 2}));
+        System.out.println(countTriplet(new int[]{2, 3, 4}));
+    }
+
+    int countTriplet(int arr[]) {
+        // code here
+        int n = arr.length;
+        Arrays.sort(arr);
+        int count = 0;
+
+        for (int k = n - 1; k >= 0; k--) {
+            int i = 0, j = k - 1;
+            while (i < j) {
+                if (arr[i] + arr[j] == arr[k]) {
+                    count++;
+                    i++;
+                    j--;
+                } else if (arr[i] + arr[j] < arr[k]) {
+                    i++;
+                } else {
+                    j--;
+                }
+            }
+        }
+
+        return count;
     }
 
     public static int firstRepeated(int[] arr) {
