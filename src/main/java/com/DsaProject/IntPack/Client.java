@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Client {
@@ -21,6 +22,7 @@ public class Client {
     {
         return nums.stream().collect(Collectors.groupingBy(String::length));
     }
+
 
     public int maxWater(int arr[]) {
         int n = arr.length;
