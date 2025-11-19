@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Executor {
@@ -15,8 +16,12 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(countTriplet(new int[]{1, 5, 3, 2}));
-        System.out.println(countTriplet(new int[]{2, 3, 4}));
+        System.out.println(customFilter(55, num -> num % 2 == 0));
+    }
+
+    private boolean customFilter(Integer number, Predicate<Integer> conditionsToSatisfy)
+    {
+        return conditionsToSatisfy.test(number);
     }
 
     int countTriplet(int arr[]) {
