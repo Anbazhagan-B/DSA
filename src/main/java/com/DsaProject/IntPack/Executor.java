@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.*;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,25 @@ public class Executor {
 
     private boolean customFilter(Integer number, Predicate<Integer> conditionsToSatisfy)
     {
-        return conditionsToSatisfy.test(number);
+        try
+        {
+            //return conditionsToSatisfy.test(number);
+            CountDownLatch count = new CountDownLatch(3);
+            for (int i = 0; i < 3; i++)
+            {
+                int finalI = i;
+                new Thread(() -> {
+                    System.out.println("Thread" + finalI);
+                    count.countDown();
+                }).start();
+            }
+            count.await();
+        }
+        catch (Exception e)
+        {
+
+        }
+        return true;
     }
 
     int countTriplet(int arr[]) {
