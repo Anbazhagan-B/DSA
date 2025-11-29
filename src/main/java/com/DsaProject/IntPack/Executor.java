@@ -43,6 +43,30 @@ public class Executor {
         return true;
     }
 
+
+    // abcdd
+    ///  Find duplicate char
+
+    static String findDuplicateChars(String input)
+    {
+        StringBuilder duplicateChrs = new StringBuilder();
+        HashSet<Character> characters = new HashSet<>();
+        for(char chr : input.toCharArray())
+        {
+            if(characters.contains(chr))
+            {
+                duplicateChrs.append(chr);
+            }
+            else
+            {
+                characters.add(chr);
+            }
+        }
+
+        return duplicateChrs.toString();
+
+    }
+
     int countTriplet(int arr[]) {
         // code here
         int n = arr.length;
