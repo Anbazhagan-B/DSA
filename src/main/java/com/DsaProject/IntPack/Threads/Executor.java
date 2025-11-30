@@ -5,7 +5,13 @@ public class Executor {
     Object lock1 = new Object();
     Object lock2 = new Object();
 
+
+    DatabaseConnection databaseConnection = () -> { System.out.println("Add Connection"); };
+
+
+
     Couter couter = new Couter();
+
     public void multiThreading() {
         Thread thread1 = new Thread( () ->
         {
