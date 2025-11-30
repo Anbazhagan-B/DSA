@@ -5,7 +5,31 @@ public class Executor {
     Object lock1 = new Object();
     Object lock2 = new Object();
 
-    public void execute()
+    Couter couter = new Couter();
+    public void multiThreading() {
+        Thread thread1 = new Thread( () ->
+        {
+            //while (couter.count.get() < 100)
+            while (couter.count < 100)
+            {
+                System.out.println("Thread 1:- "+ couter.getIncrementedValue());
+            }
+        });
+
+        Thread thread2 = new Thread( () ->
+        {
+            //while (couter.count.get() < 100)
+            while (couter.count < 100)
+            {
+                System.out.println("Thread 2:- " + couter.getIncrementedValue());
+            }
+        });
+
+        thread1.start();
+        thread2.start();
+    }
+
+    public void deadLockProgram()
     {
         Thread thread1 = new Thread(() -> {
             synchronized (lock1)

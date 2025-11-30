@@ -1,6 +1,7 @@
 package com.DsaProject.IntPack;
 import com.DsaProject.IntPack.FunctionalInterface.Calculator;
 import com.DsaProject.IntPack.supports.*;
+import com.DsaProject.Prods.Employee;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +44,14 @@ public class Executor {
         return true;
     }
 
+    static List<Employee> sortEmployee(List<Employee> employees)
+    {
+        return employees.stream().
+                sorted(Comparator.comparing(Employee::getDepartment)
+                        .thenComparing(Employee::getSalary)
+                        .thenComparing(Employee::getName))
+                .toList();
+    }
 
     // abcdd
     ///  Find duplicate char
