@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -19,6 +20,12 @@ public class Executor {
 
     public void execute() {
         System.out.println(customFilter(55, num -> num % 2 == 0));
+    }
+
+    Map<Character, Long> characterWithCount(String input)
+    {
+       return input.chars().mapToObj(c -> (char)c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
     }
 
     private boolean customFilter(Integer number, Predicate<Integer> conditionsToSatisfy)
