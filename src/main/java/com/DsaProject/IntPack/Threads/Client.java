@@ -9,7 +9,7 @@ public class Client {
     public static void main(String[] args)
     {
         Executor executor = new Executor();
-        executor.multiThreading();
+        executor.fibonacciSeries();
 
 //        ExecutorService executorService = Executors.newFixedThreadPool(2);
 //        Runnable1 runnable1 = new Runnable1("Runnable");

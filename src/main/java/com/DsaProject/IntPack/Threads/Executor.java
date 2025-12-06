@@ -1,5 +1,10 @@
 package com.DsaProject.IntPack.Threads;
 
+import com.DsaProject.Prods.Employee;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
 public class Executor {
 
     Object lock1 = new Object();
@@ -8,7 +13,36 @@ public class Executor {
 
     DatabaseConnection databaseConnection = () -> { System.out.println("Add Connection"); };
 
+    public void fibonacciSeries()
+    {
+        List<Integer> fibNumbers = new ArrayList<>();
+        FibonacciHelper1(8, fibNumbers);
+        System.out.println("fibonacciSeries :- " + fibNumbers);
+    }
 
+    private void groupByEmployeeSalary(List<Employee> employees)
+    {
+        employees.add(new Employee("Ajay", "IT", 2000));
+        employees.add(new Employee("Ton", "IT", 3000));
+        employees.add(new Employee("Berry", "IT", 3000));
+        employees.add(new Employee("Dom", "IT", 6000));
+        employees.add(new Employee("Anbu", "IT", 6000));
+        Map<Integer, List<Employee>> emp = employees.stream().collect(Collectors.groupingBy(Employee::getSalary));
+    }
+
+    private int FibonacciHelper1(int num, List<Integer> fibNumbers)
+    {
+        System.out.println("Num :- " + num);
+        if(num == 0 || num == 1)
+        {
+            fibNumbers.add(num);
+            return num;
+        }
+        int result =  FibonacciHelper1(num - 1, fibNumbers) + FibonacciHelper1(num - 2, fibNumbers);
+        fibNumbers.add(result);
+
+        return result;
+    }
 
     Couter couter = new Couter();
 
