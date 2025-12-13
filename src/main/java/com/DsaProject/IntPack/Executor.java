@@ -19,7 +19,21 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(customFilter(55, num -> num % 2 == 0));
+        System.out.println(CheckPairSum(8,  new ArrayList<>(Arrays.asList(3, 5, 1, 2, 1, 2))));
+    }
+
+    public int CheckPairSum(int A, ArrayList<Integer> B) {
+        Set<Integer> sumNumbers = new HashSet<>();
+        for(Integer num : B)
+        {
+            int targetDifferencePossible = A - num;
+            if(sumNumbers.contains(targetDifferencePossible))
+            {
+                return 1;
+            }
+            sumNumbers.add(num);
+        }
+        return 0;
     }
 
     Map<Character, Long> characterWithCount(String input)
