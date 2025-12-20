@@ -22,6 +22,11 @@ public class Executor {
         System.out.println(CheckPairSum(8,  new ArrayList<>(Arrays.asList(3, 5, 1, 2, 1, 2))));
     }
 
+    public int CheckDifference(ArrayList<Integer> A, int B) {
+        
+        return 0;
+    }
+
     public int CheckPairSum(int A, ArrayList<Integer> B) {
         Set<Integer> sumNumbers = new HashSet<>();
         for(Integer num : B)
