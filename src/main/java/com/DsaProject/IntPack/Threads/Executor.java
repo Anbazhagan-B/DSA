@@ -3,6 +3,7 @@ package com.DsaProject.IntPack.Threads;
 import com.DsaProject.Prods.Employee;
 
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Executor {
@@ -18,6 +19,17 @@ public class Executor {
         List<Integer> fibNumbers = new ArrayList<>();
         FibonacciHelper1(8, fibNumbers);
         System.out.println("fibonacciSeries :- " + fibNumbers);
+    }
+
+    public Map<Character, Long> countCharCount(String input)
+    {
+        return input.chars().mapToObj(chr -> (char)chr).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    public char countCharCount1(String input)
+    {
+        return input.chars().mapToObj(chr -> (char)chr).collect(Collectors.groupingBy(c -> c, Collectors.counting())).entrySet().stream()
+                .filter(entry -> entry.getValue() == 1).findFirst().get().getKey();
     }
 
     private void groupByEmployeeSalary(List<Employee> employees)
