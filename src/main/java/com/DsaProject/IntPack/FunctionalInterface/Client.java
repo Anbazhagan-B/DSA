@@ -9,7 +9,7 @@ public class Client {
 //        streamPractice.execute();
 
         Executor executor = new Executor(new NumericOperation());
-        executor.executeNumeric();
+        executor.execute();
 
     }
 }
