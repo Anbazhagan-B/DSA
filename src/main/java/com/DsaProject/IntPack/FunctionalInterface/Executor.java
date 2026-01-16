@@ -1,6 +1,8 @@
 package com.DsaProject.IntPack.FunctionalInterface;
 
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -19,7 +21,49 @@ public class Executor {
 
     public void execute()
     {
-        System.out.println(mostFrequentCharacter("asaadde"));
+        System.out.println(countDistinctElements(List.of(1, 2, 3, 4, 4, 5, 5,6, 6)));
+    }
+
+    List<Integer> countDistinctElements(List<Integer> nums)
+    {
+        return nums.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() == 1).map(entry -> entry.getKey()).toList();
+    }
+
+    Map<Integer, List<String>> groupWordsByLength(List<String> strs)
+    {
+        return strs.stream().collect(Collectors.groupingBy(String::length));
+    }
+
+    List<Character> findAlDuplicate(String str)
+    {
+        return str.chars().mapToObj(ch -> (char)ch).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+                .entrySet().stream().filter(entry -> entry.getValue() > 1)
+                .map(Map.Entry::getKey).toList();
+    }
+    long countWordsInString(String str)
+    {
+        return Arrays.stream(str.split(" ")).count();
+    }
+
+    List<String> convertToUpperCase(List<String> strs)
+    {
+        return strs.stream().map(String::toUpperCase).toList();
+    }
+
+    String joinByComma(List<String> strs)
+    {
+        return strs.stream().collect(Collectors.joining(","));
+    }
+
+    Map<String, Long> WordWithLength(List<String> strs)
+    {
+        return strs.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    }
+
+    List<String> filterStringByJ(List<String> strs)
+    {
+        return strs.stream().filter(str -> str.startsWith("J")).toList();
     }
 
     public void executeNumeric()
@@ -34,5 +78,22 @@ public class Executor {
     {
         return chars.chars().mapToObj(ch -> (char)ch).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
+    }
+
+    public long vowelsCount(String str)
+    {
+        String vowels = "aeiouAEIOU";
+
+        return str.chars().filter(ch -> vowels.indexOf((char)ch) != -1).count();
+    }
+
+    String convertStringToUpperCase(String str)
+    {
+        return str.chars().mapToObj(ch -> Character.toUpperCase((char)ch)).map(String::valueOf).collect(Collectors.joining());
+    }
+
+    long totalCharCount(String str)
+    {
+        return str.chars().count();
     }
 }
