@@ -21,7 +21,12 @@ public class Executor {
 
     public void execute()
     {
-        System.out.println(countDistinctElements(List.of(1, 2, 3, 4, 4, 5, 5,6, 6)));
+        System.out.println(groupByLength(List.of("ab", "aa", "bb", "fvg", "ttt", "c")));
+    }
+
+    Map<Integer, List<String>> groupByLength(List<String> strs)
+    {
+        return strs.stream().collect(Collectors.groupingBy(String::length));
     }
 
     List<Integer> countDistinctElements(List<Integer> nums)
