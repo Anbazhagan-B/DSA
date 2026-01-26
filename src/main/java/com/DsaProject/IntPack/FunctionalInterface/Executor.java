@@ -21,7 +21,28 @@ public class Executor {
 
     public void execute()
     {
-        System.out.println(groupByLength(List.of("ab", "aa", "bb", "fvg", "ttt", "c")));
+        System.out.println(extractMaximum("abc"));
+    }
+
+    static int extractMaximum(String S) {
+        char[] charArray = S.toCharArray();
+        int maxValue = -1;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Character character : charArray) {
+            if (Character.isDigit(character)) {
+                stringBuilder.append(character);
+            } else {
+                stringBuilder = new StringBuilder();
+            }
+
+            if(!stringBuilder.isEmpty())
+            {
+                maxValue = Math.max(Integer.parseInt(stringBuilder.toString()), maxValue);
+            }
+        }
+
+        return maxValue;
     }
 
     Map<Integer, List<String>> groupByLength(List<String> strs)
