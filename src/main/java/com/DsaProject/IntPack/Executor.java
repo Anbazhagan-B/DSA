@@ -22,6 +22,31 @@ public class Executor {
         System.out.println(CheckPairSum(8,  new ArrayList<>(Arrays.asList(3, 5, 1, 2, 1, 2))));
     }
 
+    static int getAddedValue(String input)
+    {
+        Map<Character, Integer> charWithValue = new HashMap<>();
+        charWithValue.put('I', 1);
+        charWithValue.put('V', 5);
+        charWithValue.put('X', 10);
+        charWithValue.put('L', 50);
+        charWithValue.put('C', 100);
+        charWithValue.put('D', 500);
+        charWithValue.put('M', 1000);
+
+        int output = 0;
+        for (int i = 0; i < input.length(); i++) {
+            int currentValue = charWithValue.get(input.charAt(i));
+
+            // If next char has greater value, subtract current; else add
+            if (i + 1 < input.length() && currentValue < charWithValue.get(input.charAt(i + 1))) {
+                output -= currentValue;
+            } else {
+                output += currentValue;
+            }
+        }
+        return output;
+    }
+
     public int CheckDifference(ArrayList<Integer> A, int B) {
         
         return 0;
