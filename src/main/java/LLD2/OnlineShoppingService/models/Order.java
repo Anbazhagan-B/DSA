@@ -1,14 +1,14 @@
 package LLD2.OnlineShoppingService.models;
 
 import LLD2.OnlineShoppingService.enums.OrderStatus;
+import LLD2.OnlineShoppingService.state.*;
 import LLD2.OnlineShoppingService.observer.Subject;
-import com.DsaProject.LLD.OnlineShoppingLLD.models.OrderLineItem;
 
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.UUID;
 
-public class Order extends Subject {
+public class Order extends Subject{
     private final String id;
     private final Customer customer;
     private final List<OrderLineItem> items;
@@ -23,6 +23,37 @@ public class Order extends Subject {
         this.id = UUID.randomUUID().toString().substring(0, 8);
         this.customer = customer;
         this.items = items;
-        
+        this.shippingAddress = shippingAddress;
+        this.totalAmount = totalAmount;
+        this.orderDate = LocalDateTime.now();
+        this.status = OrderStatus.PLACED;
+        this.currentState = new PlacedState();
+        addObserver(customer);
     }
+
+    public void shipOrder()
+    {
+        currentState.ship(this);
+    }
+
+    public void deliverOrder()
+    {
+        currentState.deliver(this);
+    }
+
+    public void cancelOrder()
+    {
+        currentState.cancel(this);
+    }
+
+    public String getId() { return id; }
+    public OrderStatus getStatus(){return status;}
+    public void setState(OrderState state) {this.currentState = state; }
+    public void setStatus(OrderStatus status)
+    {
+        this.status = status;
+        notifyObservers(this);
+    }
+
+    public List<OrderLineItem> getItems() { return items; }
 }
