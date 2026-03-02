@@ -19,7 +19,22 @@ public class Executor {
 
 
     public void execute() {
-        System.out.println(CheckPairSum(8,  new ArrayList<>(Arrays.asList(3, 5, 1, 2, 1, 2))));
+        reverseArray(new int[] {1, 4, 3, 2, 6, 5});
+    }
+
+    public void reverseArray(int arr[]) {
+       int n = arr.length, i = 0, j = n - 1;
+
+       while (i <= n/2 && j >= n/2)
+       {
+           int temp = arr[j];
+           arr[j] = arr[i];
+           arr[i] = temp;
+           i++;
+           j--;
+       }
+
+       System.out.println("reversedArray" + arr);
     }
 
     static int getAddedValue(String input)
