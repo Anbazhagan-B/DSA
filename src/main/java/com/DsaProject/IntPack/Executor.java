@@ -37,6 +37,27 @@ public class Executor {
        System.out.println("reversedArray" + arr);
     }
 
+    static long findCountUpto(long d) {
+        // code here
+        long total = 0;
+
+        for (long k = 1; k <= d; k++) {
+            // k-digit numbers with at least one zero
+            // = Total k-digit - No-zero k-digit
+            // = 9 * 10^(k-1)  -  9 * 9^(k-1)
+            long withZero = 9 * pow(10, k - 1) - 9 * pow(9, k - 1);
+            total += withZero;
+        }
+
+        return total;
+    }
+
+    static long pow(long base, long exp) {
+        long result = 1;
+        for (long i = 0; i < exp; i++) result *= base;
+        return result;
+    }
+
     static int getAddedValue(String input)
     {
         Map<Character, Integer> charWithValue = new HashMap<>();
